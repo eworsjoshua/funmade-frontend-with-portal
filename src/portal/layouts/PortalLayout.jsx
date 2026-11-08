@@ -34,6 +34,9 @@ export default function PortalLayout() {
           >
             <span className="navbar-toggler-icon" />
           </button>
+          <button type="button" className="btn btn-sm btn-outline-light ms-2" onClick={logout}>
+            Log out
+          </button>
           <div className={`collapse navbar-collapse${open ? " show" : ""}`}>
             <ul className="navbar-nav me-auto">
               {links.map((l) => (
@@ -59,9 +62,6 @@ export default function PortalLayout() {
               <NavLink to="/change-password" className="link-light small">
                 Change password
               </NavLink>
-              <button type="button" className="btn btn-sm btn-outline-light" onClick={logout}>
-                Log out
-              </button>
             </div>
           </div>
         </div>
