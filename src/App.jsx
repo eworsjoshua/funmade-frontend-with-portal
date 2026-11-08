@@ -12,6 +12,7 @@ const ChangePassword = lazy(() => import("./portal/pages/ChangePassword"));
 const AdminDashboard = lazy(() => import("./portal/pages/AdminDashboard"));
 const TeacherDashboard = lazy(() => import("./portal/pages/TeacherDashboard"));
 const StudentDashboard = lazy(() => import("./portal/pages/StudentDashboard"));
+const PaymentCallback = lazy(() => import("./portal/pages/PaymentCallback"));
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             </Route>
             <Route element={<RequireRole role="student" />}>
               <Route path="/student" element={<StudentDashboard />} />
+              <Route path="/payment/callback" element={<PaymentCallback />} />
             </Route>
             <Route path="/change-password" element={<ChangePassword />} />
           </Route>

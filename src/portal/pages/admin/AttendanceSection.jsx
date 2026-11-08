@@ -29,7 +29,7 @@ export default function AttendanceSection() {
   useEffect(() => {
     if (!effectiveClassId || !selectedDate) return;
     let cancelled = false;
-    api(`/api/attendance/records/sheet/?school_class=${effectiveClassId}&date=${selectedDate}`)
+    api(`/api/attendance/records/register/?school_class=${effectiveClassId}&date=${selectedDate}`)
       .then((data) => {
         if (!cancelled) {
           setEntries(
@@ -77,7 +77,7 @@ export default function AttendanceSection() {
     setSaving(true);
     setErrors([]);
     try {
-      await api("/api/attendance/records/mark-register/", {
+      await api("/api/attendance/records/mark/", {
         method: "POST",
         body: {
           school_class: Number(selectedClassId),

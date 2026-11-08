@@ -101,15 +101,18 @@ export default function StudentFeesTab() {
                   {b.fees.map((fee) => {
                     const remaining = Math.max(0, (fee.amount || 0) - (fee.paid || 0));
                     const isFullyPaid = remaining <= 0;
+                    const feeId = fee.fee ?? fee.id ?? fee.fee_id;
                     return (
-                      <tr key={fee.id || fee.fee_id}>
+                      <tr key={feeId}>
                         <td className="fw-semibold">
                           {fee.name}
                           {fee.description && (
                             <div className="small text-muted">{fee.description}</div>
                           )}
                         </td>
-                        <td className="text-capitalize">{fee.term} Term</td>
+                        <td className="text-capitalize">
+                          {fee.term ? `${fee.term} Term` : "Whole session"}
+                        </td>
                         <td className="fw-semibold">{naira(fee.amount)}</td>
                         <td className="text-success">{naira(fee.paid)}</td>
                         <td className={`fw-bold ${isFullyPaid ? "text-success" : "text-danger"}`}>
@@ -121,10 +124,10 @@ export default function StudentFeesTab() {
                           ) : (
                             <button
                               className="btn btn-sm btn-primary fw-semibold"
-                              disabled={payingFeeId === (fee.id || fee.fee_id)}
-                              onClick={() => handlePayOnline(fee.id || fee.fee_id)}
+                              disabled={payingFeeId === feeId}
+                              onClick={() => handlePayOnline(feeId)}
                             >
-                              {payingFeeId === (fee.id || fee.fee_id) ? (
+                              {payingFeeId === feeId ? (
                                 <>
                                   <span className="spinner-border spinner-border-sm me-1" />
                                   Connecting…
